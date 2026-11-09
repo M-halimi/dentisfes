@@ -1,11 +1,14 @@
 <?php
 
 return [
+    'country' => 'Maroc',
     'eyebrow' => 'Nous trouver',
     'title' => 'Une clinique facile à rejoindre, pensée pour vous accueillir.',
     'intro' => 'Pour toute question ou demande de rendez-vous, notre équipe vous répond avec plaisir.',
     'address' => 'Adresse',
     'phone' => 'Téléphone',
+    'whatsapp' => 'WhatsApp',
+    'whatsapp_action' => 'Discuter sur WhatsApp',
     'email' => 'Email',
     'hours' => 'Horaires',
     'map_link' => 'Ouvrir dans Google Maps',

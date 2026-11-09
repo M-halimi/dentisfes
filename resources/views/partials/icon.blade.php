@@ -1,5 +1,5 @@
 @php($size = $size ?? 18)
-<svg width="{{ $size }}" height="{{ $size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<svg @class(['directional-icon' => $name === 'arrow']) width="{{ $size }}" height="{{ $size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     @switch($name)
         @case('arrow') <path d="M5 12h14M13 6l6 6-6 6"/> @break
         @case('check') <path d="m5 12 4 4L19 6"/> @break
@@ -12,6 +12,7 @@
         @case('sparkle') <path d="m12 3 1.2 5.8L19 10l-5.8 1.2L12 17l-1.2-5.8L5 10l5.8-1.2L12 3ZM19 16l.5 2.5L22 19l-2.5.5L19 22l-.5-2.5L16 19l2.5-.5L19 16Z"/> @break
         @case('tooth') <path d="M8.5 4C6.6 2.7 4 3.7 4 6.6c0 3.8 1.8 5.2 2 9.1.1 2.3.9 4.1 2.3 4.1 1.2 0 1.5-2.2 3.7-2.2s2.5 2.2 3.7 2.2c1.4 0 2.2-1.8 2.3-4.1.2-3.9 2-5.3 2-9.1 0-2.9-2.6-3.9-4.5-2.6-1 .7-1.6 1.1-3.5 1.1S9.5 4.7 8.5 4Z"/> @break
         @case('message') <path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.4 8.4 0 0 1-3.2-.6L4 20l1.6-3.7A7.2 7.2 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/> @break
+        @case('whatsapp') <path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.1Z"/><path d="m8.4 7.2.9-.1.9 2.1-.7.9a9 9 0 0 0 3.5 3.5l.9-.7 2.1.9-.1.9c-.1.8-.8 1.4-1.6 1.3-3.7-.5-6.7-3.5-7.2-7.2-.1-.8.5-1.5 1.3-1.6Z"/> @break
         @case('menu') <path d="M4 7h16M4 12h16M4 17h16"/> @break
         @case('close') <path d="m6 6 12 12M18 6 6 18"/> @break
         @case('mail') <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/> @break

@@ -30,6 +30,14 @@ return [
 
     'disks' => [
 
+        'patients' => [
+            'driver' => 'local',
+            'root' => storage_path('app/patients'),
+            'visibility' => 'private',
+            'serve' => false,
+            'throw' => true,
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),

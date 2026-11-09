@@ -4,8 +4,7 @@
     $clinic = config('clinic');
     $rtl = app()->getLocale() === 'ar';
     $phoneHref = preg_replace('/[^0-9+]/', '', $clinic['phone']);
-    $whatsappBase = $clinic['whatsapp_number'] ? 'https://wa.me/'.preg_replace('/[^0-9]/', '', $clinic['whatsapp_number']) : 'https://wa.me/';
-    $whatsappUrl = $whatsappBase.'?text='.rawurlencode(__('site.whatsapp_message'));
+    $whatsappUrl = \App\Models\ClinicSetting::whatsappUrl($clinic);
     $seo = ['title' => '404 — '.$clinic['name'], 'description' => $rtl ? 'الصفحة المطلوبة غير موجودة.' : 'La page demandée est introuvable.', 'canonical' => url()->current()];
 @endphp
 

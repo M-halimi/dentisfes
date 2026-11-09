@@ -14,6 +14,9 @@ class AdminAuth
             return to_route('admin.login')->with('error', __('admin.auth_required'));
         }
 
-        return $next($request);
+        $response = $next($request);
+        $response->headers->set('Cache-Control', 'private, no-store');
+
+        return $response;
     }
 }

@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'name' => env('CLINIC_NAME', 'Anas Kheribech'),
+    'name' => env('CLINIC_NAME', 'DENTAFES'),
+    'practitioner_name' => env('CLINIC_PRACTITIONER_NAME', 'Anas Kheribech'),
     'profession' => env('CLINIC_PROFESSION', 'Prothésiste dentaire'),
     'city' => env('CLINIC_CITY', 'Fès'),
     'address' => env('CLINIC_ADDRESS', "Route de l'Aéroport, Fès"),
     'phone' => env('CLINIC_PHONE', '07 71 75 10 87'),
     'email' => env('CLINIC_EMAIL', 'anas.ana077@gmail.com'),
     'instagram' => env('CLINIC_INSTAGRAM', 'dentiste_anas_kheribech'),
-    'whatsapp_number' => env('WHATSAPP_NUMBER', ''),
+    'whatsapp_number' => env('WHATSAPP_NUMBER', '212771751087'),
     'hours' => env('CLINIC_HOURS', 'Lun — Ven · 09:00 — 18:00'),
     'lat' => env('CLINIC_LAT', ''),
     'lng' => env('CLINIC_LNG', ''),

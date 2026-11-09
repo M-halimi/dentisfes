@@ -5,7 +5,7 @@
 @if(false)
 <main id="main">
     @include('partials.page-hero', ['eyebrow' => __('site.booking.eyebrow'), 'title' => __('site.booking.title'), 'copy' => __('site.booking.intro')])
-    <section class="section"><div class="container booking-layout"><div class="booking-intro"><span class="eyebrow">{{ __('site.booking.eyebrow') }}</span><h2>{{ __('site.booking.title') }}</h2><p>{{ __('site.booking.intro') }}</p><div class="booking-details"><a class="booking-detail" href="{{ $phoneHref ? 'tel:'.$phoneHref : '#' }}">@include('partials.icon', ['name' => 'phone', 'size' => 17])<span><strong>{{ $rtl ? 'الهاتف' : 'Téléphone' }}</strong><br>{{ $clinic['phone'] }}</span></a><span class="booking-detail">@include('partials.icon', ['name' => 'clock', 'size' => 17])<span><strong>{{ $rtl ? 'ساعات العمل' : 'Horaires d’ouverture' }}</strong><br>{{ $clinic['hours'] }}</span></span><a class="booking-detail" href="{{ $whatsappUrl }}" target="_blank" rel="noreferrer">@include('partials.icon', ['name' => 'message', 'size' => 17])<span><strong>WhatsApp</strong><br>{{ $rtl ? 'اكتبوا على واتساب' : 'Écrire sur WhatsApp' }}</span></a></div></div>
+    <section class="section"><div class="container booking-layout"><div class="booking-intro"><span class="eyebrow">{{ __('site.booking.eyebrow') }}</span><h2>{{ __('site.booking.title') }}</h2><p>{{ __('site.booking.intro') }}</p><div class="booking-details"><a class="booking-detail" href="{{ $phoneHref ? 'tel:'.$phoneHref : '#' }}">@include('partials.icon', ['name' => 'phone', 'size' => 17])<span><strong>{{ $rtl ? 'الهاتف' : 'Téléphone' }}</strong><br><bdi dir="ltr">{{ $clinic['phone'] }}</bdi></span></a><span class="booking-detail">@include('partials.icon', ['name' => 'clock', 'size' => 17])<span><strong>{{ $rtl ? 'ساعات العمل' : 'Horaires d’ouverture' }}</strong><br><bdi>{{ $clinic['hours'] }}</bdi></span></span><a class="booking-detail" href="{{ $whatsappUrl }}" target="_blank" rel="noreferrer">@include('partials.icon', ['name' => 'message', 'size' => 17])<span><strong>WhatsApp</strong><br>{{ $rtl ? 'اكتبوا على واتساب' : 'Écrire sur WhatsApp' }}</span></a></div></div>
         <form class="booking-form" method="POST" action="{{ route('appointments.store') }}"><div class="form-head"><h3>{{ __('site.form.title') }}</h3><span class="required-note">{{ __('site.form.required') }}</span></div>@csrf
             @if(session('success'))<div class="form-message visible" role="status">{{ session('success') }}</div>@endif
             @if($errors->any())<div class="form-message visible error" role="alert">{{ $rtl ? 'يرجى التحقق من الحقول المطلوبة.' : 'Merci de vérifier les champs du formulaire.' }}</div>@endif
@@ -27,7 +27,7 @@
     <section class="appointment-modern-hero">
         <div class="container appointment-modern-hero-grid">
             <div class="appointment-modern-hero-copy" data-reveal>
-                <div class="breadcrumbs"><a href="{{ route('home') }}">{{ __('site.nav.home') }}</a><span>/</span><span>{{ __('site.nav.appointment') }}</span></div>
+                <div class="breadcrumbs"><a href="{{ route('home', ['lang' => app()->getLocale()]) }}">{{ __('site.nav.home') }}</a><span>/</span><span>{{ __('site.nav.appointment') }}</span></div>
                 <span class="appointment-kicker">{{ __('appointment.hero_kicker') }}</span>
                 <h1>{{ __('appointment.hero_title') }}</h1>
                 <p>{{ __('appointment.hero_intro') }}</p>
@@ -53,8 +53,8 @@
                 <span class="appointment-kicker">{{ __('appointment.contact_kicker') }}</span>
                 <h2>{{ __('appointment.contact_title') }}</h2>
                 <div class="appointment-contact-list">
-                    <a href="{{ $phoneHref ? 'tel:'.$phoneHref : '#' }}" class="appointment-contact-line"><span class="appointment-contact-icon">@include('partials.icon', ['name' => 'phone'])</span><span><small>{{ __('appointment.phone_label') }}</small><strong>{{ $clinic['phone'] }}</strong></span></a>
-                    <div class="appointment-contact-line"><span class="appointment-contact-icon">@include('partials.icon', ['name' => 'clock'])</span><span><small>{{ __('appointment.hours_label') }}</small><strong>{{ $clinic['hours'] }}</strong></span></div>
+                    <a href="{{ $phoneHref ? 'tel:'.$phoneHref : '#' }}" class="appointment-contact-line"><span class="appointment-contact-icon">@include('partials.icon', ['name' => 'phone'])</span><span><small>{{ __('appointment.phone_label') }}</small><strong><bdi dir="ltr">{{ $clinic['phone'] }}</bdi></strong></span></a>
+                    <div class="appointment-contact-line"><span class="appointment-contact-icon">@include('partials.icon', ['name' => 'clock'])</span><span><small>{{ __('appointment.hours_label') }}</small><strong><bdi>{{ $clinic['hours'] }}</bdi></strong></span></div>
                     <a href="{{ $whatsappUrl }}" class="appointment-contact-line" target="_blank" rel="noreferrer"><span class="appointment-contact-icon">@include('partials.icon', ['name' => 'message'])</span><span><small>{{ __('appointment.whatsapp_label') }}</small><strong>{{ __('appointment.whatsapp_action') }}</strong></span></a>
                 </div>
                 <div class="appointment-aside-card"><img src="{{ asset('media/about/clinic-room.webp') }}" alt="{{ __('appointment.contact_title') }}" loading="lazy"><span>@include('partials.icon', ['name' => 'sparkles']) {{ __('appointment.hero_note') }}</span></div>

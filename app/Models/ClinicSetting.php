@@ -26,6 +26,7 @@ class ClinicSetting extends Model
 
         foreach ([
             'name',
+            'practitioner_name',
             'profession',
             'city',
             'address',
@@ -41,6 +42,28 @@ class ClinicSetting extends Model
         }
 
         return $clinic;
+    }
+
+    /**
+     * @param  array{whatsapp_number: string|null, phone: string}  $clinic
+     */
+    public static function whatsappUrl(array $clinic): string
+    {
+        $number = preg_replace('/[^0-9]/', '', (string) $clinic['whatsapp_number']);
+
+        if ($number === '') {
+            $number = preg_replace('/[^0-9]/', '', $clinic['phone']);
+        }
+
+        if (str_starts_with($number, '00')) {
+            $number = substr($number, 2);
+        }
+
+        if (preg_match('/^0[0-9]{9}$/', $number)) {
+            $number = '212'.substr($number, 1);
+        }
+
+        return 'https://wa.me/'.$number.'?text='.rawurlencode(__('site.whatsapp_message'));
     }
 
     public static function value(string $key, mixed $default = null): mixed

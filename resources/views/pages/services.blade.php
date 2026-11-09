@@ -6,7 +6,7 @@
         <div class="container">
             <div class="services-detail-hero-grid" data-reveal>
                 <div>
-                    <div class="breadcrumbs"><a href="{{ route('home') }}">{{ __('site.nav.home') }}</a><span>·</span><span>{{ __('site.nav.services') }}</span></div>
+                    <div class="breadcrumbs"><a href="{{ route('home', ['lang' => app()->getLocale()]) }}">{{ __('site.nav.home') }}</a><span>·</span><span>{{ __('site.nav.services') }}</span></div>
                     <span class="services-detail-kicker">{{ __('services.hero_kicker') }}</span>
                     <h1>{{ __('services.hero_title') }}</h1>
                     <p>{{ __('services.hero_intro') }}</p>
@@ -51,7 +51,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="service-detail-footer"><span class="service-detail-disclaimer">{{ $service['note'] }}</span><a class="button small" href="{{ route('appointment') }}">{{ $service['cta'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 14])</a></div>
+                        <div class="service-detail-footer"><span class="service-detail-disclaimer">{{ $service['note'] }}</span><a class="button small" href="{{ route('appointment', ['lang' => app()->getLocale()]) }}">{{ $service['cta'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 14])</a></div>
                     </div>
                 </article>
             @endforeach
@@ -84,7 +84,7 @@
         <div class="container">
             <div class="services-detail-cta" data-reveal>
                 <div><span class="services-detail-kicker">{{ __('services.cta_kicker') }}</span><h2>{{ __('services.cta_title') }}</h2><p>{{ __('services.cta_copy') }}</p></div>
-                <div class="services-detail-cta-actions"><a class="button" href="{{ route('appointment') }}">{{ __('services.cta_button') }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a><a class="services-detail-contact-link" href="{{ route('contact') }}">{{ __('services.cta_contact') }} @include('partials.icon', ['name' => 'arrow', 'size' => 14])</a></div>
+                <div class="services-detail-cta-actions"><a class="button" href="{{ route('appointment', ['lang' => app()->getLocale()]) }}">{{ __('services.cta_button') }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a><a class="services-detail-contact-link" href="{{ route('contact', ['lang' => app()->getLocale()]) }}">{{ __('services.cta_contact') }} @include('partials.icon', ['name' => 'arrow', 'size' => 14])</a></div>
             </div>
         </div>
     </section>

@@ -15,7 +15,7 @@
                 <h1>{{ $replaceCity($about['hero_title']) }}</h1>
                 <p>{{ $about['hero_copy'] }}</p>
                 <div class="about-locale-actions">
-                    <a class="button button-light" href="{{ route('appointment') }}">{{ $about['appointment_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 16])</a>
+                    <a class="button button-light" href="{{ route('appointment', ['lang' => app()->getLocale()]) }}">{{ $about['appointment_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 16])</a>
                     <a class="about-locale-link" href="#about-values">{{ $about['services_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <p>{{ $about['specialty_copy'] }}</p>
                 <span class="about-locale-solutions-label">{{ $about['solutions_label'] }}</span>
                 <div class="about-locale-chips">@foreach($about['chips'] as $chip)<span>{{ $chip }}</span>@endforeach</div>
-                <a class="button" href="{{ route('services') }}">{{ $about['services_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a>
+                <a class="button" href="{{ route('services', ['lang' => app()->getLocale()]) }}">{{ $about['services_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a>
             </div>
             <div class="about-locale-specialty-art" data-reveal><img src="{{ config('clinic.image.dentist') }}" alt="{{ $about['specialty_title'] }}" loading="lazy"><div>@include('partials.icon', ['name' => 'sparkle', 'size' => 17]) {{ $about['video_caption'] }}</div></div>
         </div>
@@ -73,9 +73,9 @@
     </section>
 
     <section class="about-locale-section about-locale-section-white">
-        <div class="container about-locale-location" data-reveal><div><span class="about-locale-eyebrow">{{ $about['location_eyebrow'] }}</span><h2>{{ $clinic['name'] }}</h2><p>{{ $clinic['address'] }} · {{ $city }}, Maroc</p></div><div><span>{{ $about['address'] }}</span><strong>{{ $clinic['address'] }}</strong></div><div><span>{{ $about['hours'] }}</span><strong>{{ $clinic['hours'] }}</strong></div><a class="button" href="{{ route('contact') }}">{{ $about['access_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a></div>
+        <div class="container about-locale-location" data-reveal><div><span class="about-locale-eyebrow">{{ $about['location_eyebrow'] }}</span><h2>{{ $clinic['name'] }}</h2><p>{{ $clinic['address'] }} · <bdi>{{ $city }}</bdi> · {{ __('contact.country') }}</p></div><div><span>{{ $about['address'] }}</span><strong>{{ $clinic['address'] }}</strong></div><div><span>{{ $about['hours'] }}</span><strong><bdi>{{ $clinic['hours'] }}</bdi></strong></div><a class="button" href="{{ route('contact', ['lang' => app()->getLocale()]) }}">{{ $about['access_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 15])</a></div>
     </section>
 
-    <section class="about-locale-final"><div class="container about-locale-final-inner" data-reveal><div><span class="about-locale-eyebrow">{{ $about['cta_eyebrow'] }}</span><h2>{{ $about['cta_title'] }}</h2></div><a class="button button-light" href="{{ route('appointment') }}">{{ $about['appointment_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 16])</a></div></section>
+    <section class="about-locale-final"><div class="container about-locale-final-inner" data-reveal><div><span class="about-locale-eyebrow">{{ $about['cta_eyebrow'] }}</span><h2>{{ $about['cta_title'] }}</h2></div><a class="button button-light" href="{{ route('appointment', ['lang' => app()->getLocale()]) }}">{{ $about['appointment_link'] }} @include('partials.icon', ['name' => 'arrow', 'size' => 16])</a></div></section>
 </main>
 @endsection

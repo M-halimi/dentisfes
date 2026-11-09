@@ -1,6 +1,19 @@
 <?php
 
 return [
+    'tour_kicker' => 'Bienvenue chez nous',
+    'tour_title' => 'Votre première visite',
+    'tour_title_accent' => 'commence ici.',
+    'tour_description' => 'Poussez la porte de notre cabinet et découvrez les lieux à votre rythme. Un premier aperçu de notre espace, avant de nous rencontrer.',
+    'tour_location' => 'Au cœur de Fès',
+    'tour_note' => 'Un accueil en toute sérénité',
+    'tour_link' => 'Faire connaissance avec le cabinet',
+    'tour_video_label' => 'Visite vidéo du cabinet à Fès',
+    'tour_play' => 'Lancer la visite',
+    'tour_badge' => 'Le cabinet en images',
+    'tour_caption' => 'Un aperçu de votre prochaine visite.',
+    'tour_error' => 'La vidéo ne peut pas être lue ici.',
+    'tour_open' => 'Ouvrir la vidéo',
     'hero_location' => 'Fès, Maroc · Dentisterie moderne',
     'hero_kicker' => 'Nouvelle génération de soins dentaires',
     'hero_title' => 'Votre sourire mérite',

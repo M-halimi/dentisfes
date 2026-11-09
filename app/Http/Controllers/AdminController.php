@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\ClinicSetting;
+use App\Models\Payment;
+use App\Money;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -52,6 +54,7 @@ class AdminController extends Controller
         ) + [
             'settings' => [
                 'name' => $clinic['name'],
+                'practitioner_name' => $clinic['practitioner_name'],
                 'profession' => $clinic['profession'],
                 'city' => $clinic['city'],
                 'address' => $clinic['address'],
@@ -71,6 +74,7 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
+            'practitioner_name' => ['sometimes', 'nullable', 'string', 'max:120'],
             'profession' => ['required', 'string', 'max:120'],
             'city' => ['required', 'string', 'max:80'],
             'address' => ['required', 'string', 'max:255'],
@@ -84,9 +88,13 @@ class AdminController extends Controller
         ]);
 
         $validated['notifications_enabled'] = $request->boolean('notifications_enabled') ? '1' : '0';
+        if (! array_key_exists('practitioner_name', $validated)) {
+            $validated['practitioner_name'] = ClinicSetting::apply(config('clinic'))['practitioner_name'];
+        }
 
         foreach ([
             'name',
+            'practitioner_name',
             'profession',
             'city',
             'address',
@@ -126,28 +134,27 @@ class AdminController extends Controller
             ->withQueryString();
 
         $allAppointments = Appointment::query()->get();
-        $prices = [
-            'consultation' => 250,
-            'scaling' => 350,
-            'care' => 300,
-            'aesthetic' => 1800,
-            'prosthetics' => 2200,
-            'implants' => 4500,
-        ];
-        $revenue = static function ($items) use ($prices): int {
-            return (int) $items->sum(fn (Appointment $appointment): int => $prices[$appointment->service] ?? 500);
-        };
+        $revenue = static fn (Carbon $start, Carbon $end): int => (int) Payment::query()
+            ->whereNull('cancelled_at')->where('paid_on', '>=', $start->toDateString())
+            ->where('paid_on', '<', $end->copy()->addDay()->toDateString())->sum('amount_cents');
 
         $periods = [
             'day' => $allAppointments->filter(fn (Appointment $appointment): bool => $appointment->preferred_date->isSameDay($today)),
             'month' => $allAppointments->filter(fn (Appointment $appointment): bool => $appointment->preferred_date->isSameMonth($today)),
             'year' => $allAppointments->filter(fn (Appointment $appointment): bool => $appointment->preferred_date->isSameYear($today)),
         ];
-        $periodStats = collect($periods)->map(fn ($items): array => [
-            'appointments' => $items->count(),
-            'confirmed' => $items->where('status', 'confirmed')->count(),
-            'revenue' => $revenue($items),
-        ])->all();
+        $boundaries = [
+            'day' => [$today->copy(), $today->copy()],
+            'month' => [$today->copy()->startOfMonth(), $today->copy()->endOfMonth()],
+            'year' => [$today->copy()->startOfYear(), $today->copy()->endOfYear()],
+        ];
+        $periodStats = collect($periods)->map(function ($items, string $period) use ($revenue, $boundaries): array {
+            $cents = $revenue(...$boundaries[$period]);
+
+            return ['appointments' => $items->count(), 'confirmed' => $items->where('status', 'confirmed')->count(),
+                'confirmed_display' => __('admin.confirmed_count', ['count' => $items->where('status', 'confirmed')->count()]),
+                'revenue' => $cents, 'revenue_display' => Money::format($cents)];
+        })->all();
 
         $calendarDays = collect(range(1, $selectedDate->daysInMonth))->map(function (int $day) use ($selectedDate, $allAppointments): array {
             $date = $selectedDate->copy()->day($day);
@@ -185,24 +192,23 @@ class AdminController extends Controller
             ->values();
 
         $chart = collect(range(5, 0))->map(function (int $monthsAgo) use ($today, $allAppointments, $revenue): array {
-            $month = $today->copy()->subMonths($monthsAgo)->startOfMonth();
+            $month = $today->copy()->startOfMonth()->subMonths($monthsAgo);
             $items = $allAppointments->filter(fn (Appointment $appointment): bool => $appointment->preferred_date->isSameMonth($month));
 
             return [
                 'label' => $month->isoFormat('MMM'),
                 'appointments' => $items->count(),
-                'revenue' => $revenue($items),
+                'revenue' => $revenue($month, $month->copy()->endOfMonth()),
             ];
         })->values()->all();
 
-        $serviceStats = collect($prices)->map(function (int $price, string $service) use ($allAppointments, $revenue): array {
+        $serviceStats = collect(config('clinic.services'))->pluck('key')->map(function (string $service) use ($allAppointments): array {
             $items = $allAppointments->where('service', $service);
 
             return [
                 'key' => $service,
                 'label' => __('site.services.'.$service.'.name'),
                 'count' => $items->count(),
-                'revenue' => $revenue($items),
             ];
         })->filter(fn (array $service): bool => $service['count'] > 0)->sortByDesc('count')->values()->take(4)->all();
 
@@ -216,7 +222,7 @@ class AdminController extends Controller
             'periodStats' => $periodStats,
             'chart' => $chart,
             'serviceStats' => $serviceStats,
-            'prices' => $prices,
+            'defaultDuration' => ClinicSetting::value('default_duration', '45'),
             'stats' => [
                 'total' => Appointment::query()->count(),
                 'pending' => Appointment::query()->where('status', 'pending')->count(),
@@ -228,7 +234,7 @@ class AdminController extends Controller
 
     public function updateStatus(Request $request, Appointment $appointment): RedirectResponse
     {
-        $validated = $request->validate(['status' => ['required', Rule::in(['pending', 'confirmed', 'cancelled'])]]);
+        $validated = $request->validate(['status' => ['required', Rule::in(['pending', 'confirmed', 'completed', 'cancelled'])]]);
         $appointment->update(['status' => $validated['status']]);
 
         return back()->with('success', __('admin.status_updated'));
@@ -281,14 +287,13 @@ class AdminController extends Controller
     {
         $clinic = ClinicSetting::apply(config('clinic'));
         $phoneHref = preg_replace('/[^0-9+]/', '', $clinic['phone']);
-        $whatsappBase = $clinic['whatsapp_number'] ? 'https://wa.me/'.preg_replace('/[^0-9]/', '', $clinic['whatsapp_number']) : 'https://wa.me/';
 
         return [
             'clinic' => $clinic,
             'locale' => app()->getLocale(),
             'rtl' => app()->getLocale() === 'ar',
             'phoneHref' => $phoneHref,
-            'whatsappUrl' => $whatsappBase.'?text='.rawurlencode(__('site.whatsapp_message')),
+            'whatsappUrl' => ClinicSetting::whatsappUrl($clinic),
             'seo' => ['title' => $title.' — '.$clinic['name'], 'description' => $description, 'canonical' => url()->current()],
         ];
     }

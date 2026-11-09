@@ -22,7 +22,7 @@ return [
         'services_copy' => 'De la prévention aux traitements les plus précis, nous vous accompagnons avec exigence et attention.',
         'about_eyebrow' => 'Le cabinet',
         'about_title' => 'La confiance se construit à chaque rendez-vous.',
-        'about_copy' => 'Prisme est un cabinet à taille humaine où la technologie sert avant tout une chose : vous offrir un soin juste, expliqué et confortable.',
+        'about_copy' => 'DENTAFES est un cabinet à taille humaine où la technologie sert avant tout une chose : vous offrir un soin juste, expliqué et confortable.',
         'engagement_eyebrow' => 'Notre engagement',
         'engagement_title' => 'Une médecine dentaire plus sereine.',
         'features' => [
@@ -31,7 +31,7 @@ return [
             ['title' => 'Un suivi attentif', 'text' => 'La relation continue au-delà du fauteuil, avec des conseils adaptés.', 'icon' => 'shield'],
         ],
         'quote' => 'Le meilleur soin est celui qui vous permet de repartir en confiance.',
-        'quote_author' => 'L’équipe Prisme',
+        'quote_author' => 'L’équipe DENTAFES',
         'quote_role' => 'Une nouvelle manière de vivre le cabinet dentaire',
         'reviews_eyebrow' => 'Ils nous font confiance',
         'reviews_title' => 'Des sourires, des histoires, une même attention.',
@@ -44,7 +44,7 @@ return [
         'cta_copy' => 'Notre équipe est disponible pour répondre à vos questions et trouver le créneau qui vous convient.',
     ],
     'about' => [
-        'eyebrow' => 'Notre histoire', 'title' => 'Un cabinet imaginé autour de vous.', 'intro' => 'Prisme est né d’une conviction simple : le soin dentaire peut être à la fois exigeant, accessible et apaisant.',
+        'eyebrow' => 'Notre histoire', 'title' => 'Un cabinet imaginé autour de vous.', 'intro' => 'DENTAFES est né d’une conviction simple : le soin dentaire peut être à la fois exigeant, accessible et apaisant.',
         'text_one' => 'Nous avons imaginé un lieu lumineux, discret et chaleureux, où chaque détail compte. Ici, la technologie ne remplace jamais l’humain : elle nous permet de vous expliquer, de vous rassurer et de vous soigner avec davantage de précision.',
         'text_two' => 'Du premier échange au suivi après votre rendez-vous, nous vous accompagnons avec une attention constante et des recommandations compréhensibles.',
         'values_eyebrow' => 'Ce qui nous guide', 'values_title' => 'Des principes simples. Des soins exigeants.',
@@ -79,6 +79,6 @@ return [
     'services' => ['consultation' => ['name' => 'Consultation dentaire', 'description' => 'Un premier échange pour comprendre vos besoins et définir ensemble la suite.', 'category' => 'Prévention'], 'scaling' => ['name' => 'Détartrage', 'description' => 'Un nettoyage professionnel en douceur pour préserver la santé de vos gencives.', 'category' => 'Prévention'], 'care' => ['name' => 'Soins dentaires', 'description' => 'Des traitements conservateurs expliqués avec clarté, dans le respect de votre confort.', 'category' => 'Restauration'], 'aesthetic' => ['name' => 'Esthétique dentaire', 'description' => 'Des solutions naturelles et mesurées pour vous aider à aimer votre sourire.', 'category' => 'Esthétique'], 'prosthetics' => ['name' => 'Prothèses dentaires', 'description' => 'Des restaurations fonctionnelles, confortables et pensées pour s’intégrer naturellement.', 'category' => 'Restauration'], 'implants' => ['name' => 'Implantologie', 'description' => 'Une prise en charge structurée, de l’étude du projet jusqu’au suivi.', 'category' => 'Restauration']],
     'appointment_success' => 'Merci pour votre demande. Le cabinet vous contactera prochainement pour confirmer votre rendez-vous.',
     'whatsapp_message' => 'Bonjour, je souhaite prendre un rendez-vous au cabinet dentaire.',
-    'seo' => ['home_title' => '[Nom du cabinet] — Cabinet Dentaire à [Ville]', 'home_description' => 'Cabinet dentaire à [Ville] : soins dentaires, prévention et rendez-vous dans un cadre serein et humain.', 'about_title' => 'À propos — [Nom du cabinet]', 'about_description' => 'Découvrez l’approche humaine et précise de [Nom du cabinet], votre cabinet dentaire à [Ville].', 'services_title' => 'Services — [Nom du cabinet]', 'services_description' => 'Consultation, détartrage, soins dentaires, esthétique, prothèses et implantologie à [Ville].', 'appointment_title' => 'Rendez-vous — [Nom du cabinet]', 'appointment_description' => 'Demandez un rendez-vous chez votre dentiste à [Ville]. Réponse rapide par téléphone ou WhatsApp.', 'contact_title' => 'Contact — [Nom du cabinet]', 'contact_description' => 'Adresse, téléphone, horaires et itinéraire pour rejoindre [Nom du cabinet] à [Ville].'],
+    'seo' => ['home_title' => ':name — Cabinet Dentaire à :city', 'home_description' => 'Cabinet dentaire à :city : soins dentaires, prévention et rendez-vous dans un cadre serein et humain.', 'about_title' => 'À propos — :name', 'about_description' => 'Découvrez l’approche humaine et précise de :name, votre cabinet dentaire à :city.', 'services_title' => 'Services — :name', 'services_description' => 'Consultation, détartrage, soins dentaires, esthétique, prothèses et implantologie à :city.', 'appointment_title' => 'Rendez-vous — :name', 'appointment_description' => 'Demandez un rendez-vous chez votre dentiste à :city. Réponse rapide par téléphone ou WhatsApp.', 'contact_title' => 'Contact — :name', 'contact_description' => 'Adresse, téléphone, horaires et itinéraire pour rejoindre :name à :city.'],
     'footer' => ['text' => 'Un cabinet dentaire à taille humaine, où la précision rencontre la douceur.', 'explore' => 'Explorer', 'find_us' => 'Nous trouver', 'hours' => 'Horaires', 'legal' => 'Informations légales', 'privacy' => 'Confidentialité'],
 ];

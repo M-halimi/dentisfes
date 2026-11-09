@@ -25,12 +25,12 @@ return [
             ['title' => 'Precision and transparency', 'text' => 'Simple explanations and a clear care plan at every step.', 'icon' => 'sparkle'],
             ['title' => 'Attentive follow-up', 'text' => 'Our relationship continues beyond the chair, with tailored guidance.', 'icon' => 'shield'],
         ],
-        'quote' => 'The best treatment is the one that lets you leave feeling confident.', 'quote_author' => 'The Prisme team', 'quote_role' => 'A new way to experience the dental clinic',
+        'quote' => 'The best treatment is the one that lets you leave feeling confident.', 'quote_author' => 'The DENTAFES team', 'quote_role' => 'A new way to experience the dental clinic',
         'reviews_eyebrow' => 'They trust us', 'reviews_title' => 'Smiles, stories and the same attention.', 'reviews' => [],
         'cta_title' => 'What if your next appointment started here?', 'cta_copy' => 'Our team is available to answer your questions and find a time that works for you.',
     ],
     'about' => [
-        'eyebrow' => 'Our story', 'title' => 'A clinic imagined around you.', 'intro' => 'Prisme was born from a simple belief: dental care can be demanding, accessible and reassuring at the same time.',
+        'eyebrow' => 'Our story', 'title' => 'A clinic imagined around you.', 'intro' => 'DENTAFES was born from a simple belief: dental care can be demanding, accessible and reassuring at the same time.',
         'text_one' => 'We imagined a bright, discreet and warm place where every detail matters. Here, technology never replaces the human connection; it helps us explain, reassure and care with greater precision.',
         'text_two' => 'From the first conversation to follow-up after your appointment, we support you with constant attention and clear recommendations.',
         'values_eyebrow' => 'What guides us', 'values_title' => 'Simple principles. Demanding care.',
@@ -65,6 +65,6 @@ return [
     ],
     'appointment_success' => 'Thank you for your request. The clinic will contact you soon to confirm your appointment.',
     'whatsapp_message' => 'Hello, I would like to book an appointment at the dental clinic.',
-    'seo' => ['home_title' => '[Clinic name] — Dental clinic in [City]', 'home_description' => 'Dental clinic in [City] for dental care, prevention and precise treatments in a calm, human setting.', 'about_title' => 'About — [Clinic name]', 'about_description' => 'Discover the human and precise approach of [Clinic name], your dental clinic in [City].', 'services_title' => 'Treatments — [Clinic name]', 'services_description' => 'Consultations, scaling, dental care, aesthetics, prosthetics and implantology in [City].', 'appointment_title' => 'Appointments — [Clinic name]', 'appointment_description' => 'Request an appointment with your dentist in [City]. Quick response by phone or WhatsApp.', 'contact_title' => 'Contact — [Clinic name]', 'contact_description' => 'Address, phone, opening hours and directions to [Clinic name] in [City].'],
+    'seo' => ['home_title' => ':name — Dental clinic in :city', 'home_description' => 'Dental clinic in :city for dental care, prevention and precise treatments in a calm, human setting.', 'about_title' => 'About — :name', 'about_description' => 'Discover the human and precise approach of :name, your dental clinic in :city.', 'services_title' => 'Treatments — :name', 'services_description' => 'Consultations, scaling, dental care, aesthetics, prosthetics and implantology in :city.', 'appointment_title' => 'Appointments — :name', 'appointment_description' => 'Request an appointment with your dentist in :city. Quick response by phone or WhatsApp.', 'contact_title' => 'Contact — :name', 'contact_description' => 'Address, phone, opening hours and directions to :name in :city.'],
     'footer' => ['text' => 'A human-sized dental clinic where precision meets gentleness.', 'explore' => 'Explore', 'find_us' => 'Find us', 'hours' => 'Opening hours', 'legal' => 'Legal information', 'privacy' => 'Privacy'],
 ];

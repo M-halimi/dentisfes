@@ -1,5 +1,55 @@
+import './patients.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('motion-ready');
+
+    document.querySelectorAll('[data-clinic-tour]').forEach((container) => {
+        const video = container.querySelector('video');
+        const playButton = container.querySelector('[data-tour-play]');
+        const errorMessage = container.querySelector('[data-tour-error]');
+
+        if (!video || !playButton) return;
+
+        video.controls = false;
+        playButton.hidden = false;
+
+        playButton.addEventListener('click', async () => {
+            if (errorMessage) errorMessage.hidden = true;
+            playButton.hidden = true;
+            video.controls = true;
+
+            try {
+                await video.play();
+                video.focus();
+            } catch {
+                video.controls = false;
+                playButton.hidden = false;
+                if (errorMessage) errorMessage.hidden = false;
+            }
+        });
+
+        video.addEventListener('play', () => {
+            video.controls = true;
+            playButton.hidden = true;
+            container.classList.add('is-playing');
+            if (errorMessage) errorMessage.hidden = true;
+        });
+
+        video.addEventListener('ended', () => {
+            video.controls = false;
+            playButton.hidden = false;
+            container.classList.remove('is-playing');
+        });
+
+        const showError = () => {
+            video.controls = false;
+            playButton.hidden = true;
+            if (errorMessage) errorMessage.hidden = false;
+        };
+
+        video.addEventListener('error', showError);
+        video.querySelector('source')?.addEventListener('error', showError);
+    });
 
     const revealItems = [...document.querySelectorAll('[data-reveal]')];
     const sectionItems = [...document.querySelectorAll('main > section')];
@@ -64,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target);
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -36px' });
+        }, { threshold: 0, rootMargin: '0px 0px -36px' });
 
         observedItems.forEach((item) => revealObserver.observe(item));
     } else {

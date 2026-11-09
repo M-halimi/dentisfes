@@ -1,11 +1,14 @@
 <?php
 
 return [
+    'country' => 'Morocco',
     'eyebrow' => 'Find us',
     'title' => 'A clinic that is easy to reach and designed to welcome you.',
     'intro' => 'For any question or appointment request, our team will be happy to help.',
     'address' => 'Address',
     'phone' => 'Phone',
+    'whatsapp' => 'WhatsApp',
+    'whatsapp_action' => 'Chat with us on WhatsApp',
     'email' => 'Email',
     'hours' => 'Opening hours',
     'map_link' => 'Open in Google Maps',

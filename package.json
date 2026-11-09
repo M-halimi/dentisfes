@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "dev:phone": "vite --host 0.0.0.0"
+        "dev:phone": "npm run build && node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('public/hot', { force: true });\" && php artisan config:clear --no-interaction && php artisan serve --host=0.0.0.0 --port=8000 --tries=1 --no-interaction"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",

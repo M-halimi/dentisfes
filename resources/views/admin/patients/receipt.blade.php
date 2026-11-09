@@ -1,0 +1,12 @@
+@extends('admin.patients.pdf-layout')
+
+@section('pdf-content')
+@php($snapshot = $payment->receipt_snapshot)
+<div class="document-heading"><div class="eyebrow">{{ $pdfClinic['name'] }} / {{ __('patients.pdf_patient_copy') }}</div><div class="document-title">{{ __('patients.receipt_title') }}</div><div class="muted">{{ __('patients.receipt_number') }} · {{ $payment->receipt_number }}</div></div>
+@if($payment->cancelled_at)<div class="cancelled"><strong>{{ __('patients.cancelled_receipt') }}</strong><br>{{ $payment->cancelled_at->format('d/m/Y · H:i') }}</div>@endif
+<div class="panel"><table><tr><td width="54%"><div class="eyebrow">{{ __('patients.pdf_patient') }}</div><div class="person-name">{{ $snapshot['patient']['full_name'] }}</div><div class="ref">{{ $snapshot['patient']['reference'] }}</div><div class="contact"><span dir="ltr">{{ $snapshot['patient']['phone'] }}</span>@if($snapshot['patient']['email'])<br><span dir="ltr">{{ $snapshot['patient']['email'] }}</span>@endif</div></td><td width="46%"><table class="metadata"><tr><td class="label">{{ __('patients.payment_date') }}</td><td class="value">{{ $payment->paid_on->format('d/m/Y') }}</td></tr><tr><td class="label">{{ __('patients.method') }}</td><td class="value">{{ __('patients.methods.'.$payment->method) }}</td></tr>@if($payment->reference)<tr><td class="label">{{ __('patients.reference') }}</td><td class="value">{{ $payment->reference }}</td></tr>@endif</table></td></tr></table></div>
+<div class="amount-banner"><div class="amount-caption">{{ __('patients.'.($payment->cancelled_at ? 'cancelled' : 'collected')) }}</div><div class="amount-value"><span dir="ltr">{{ \App\Money::format($payment->amount_cents) }}</span></div><div class="amount-subtitle">{{ __('patients.payment_date') }} · {{ $payment->paid_on->format('d/m/Y') }}</div></div>
+<div class="section-title">{{ __('patients.pdf_payment_details') }}</div>
+<table class="data-table"><thead><tr><th width="50%">{{ __('patients.label') }}</th><th width="25%">{{ __('patients.price') }}</th><th width="25%">{{ __('patients.pdf_this_payment') }}</th></tr></thead><tbody><tr><td>{{ $snapshot['service']['label'] }}</td><td class="money"><span dir="ltr">{{ \App\Money::format((int)$snapshot['service']['price_cents']) }}</span></td><td class="money teal"><span dir="ltr">{{ \App\Money::format($payment->amount_cents) }}</span></td></tr></tbody></table>
+<div class="notice">{{ __('patients.receipt_notice') }}</div>
+@endsection

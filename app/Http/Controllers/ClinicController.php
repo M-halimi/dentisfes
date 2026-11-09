@@ -34,28 +34,27 @@ class ClinicController extends Controller
 
     public function legal(): View
     {
-        return $this->page('legal', 'Mentions légales', 'Informations légales du cabinet dentaire.');
+        return $this->page('legal', __('legal.title'), __('legal.intro'));
     }
 
     public function privacy(): View
     {
-        return $this->page('privacy', 'Politique de confidentialité', 'Informations sur la protection de vos données.');
+        return $this->page('privacy', __('legal.privacy_title'), __('legal.privacy_intro'));
     }
 
     private function page(string $view, string $title, string $description): View
     {
         $clinic = ClinicSetting::apply(config('clinic'));
         $phoneHref = preg_replace('/[^0-9+]/', '', $clinic['phone']);
-        $whatsappBase = $clinic['whatsapp_number'] ? 'https://wa.me/'.preg_replace('/[^0-9]/', '', $clinic['whatsapp_number']) : 'https://wa.me/';
 
         return view('pages.'.$view, [
             'clinic' => $clinic,
             'rtl' => app()->getLocale() === 'ar',
             'phoneHref' => $phoneHref,
-            'whatsappUrl' => $whatsappBase.'?text='.rawurlencode(__('site.whatsapp_message')),
+            'whatsappUrl' => ClinicSetting::whatsappUrl($clinic),
             'seo' => [
-                'title' => $title,
-                'description' => $description,
+                'title' => strtr($title, [':name' => config('app.name'), ':city' => $clinic['city']]),
+                'description' => strtr($description, [':name' => config('app.name'), ':city' => $clinic['city']]),
                 'canonical' => url()->current(),
             ],
         ]);

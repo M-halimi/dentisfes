@@ -1,0 +1,15 @@
+{
+    "id": "/",
+    "name": "DENTAFES",
+    "short_name": "DENTAFES",
+    "lang": "fr",
+    "start_url": "/?lang=fr",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0d7c82",
+    "icons": [
+        { "src": "/images/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "/images/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    ]
+}

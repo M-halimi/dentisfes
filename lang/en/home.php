@@ -1,6 +1,19 @@
 <?php
 
 return [
+    'tour_kicker' => 'Make yourself at home',
+    'tour_title' => 'Your first visit',
+    'tour_title_accent' => 'starts here.',
+    'tour_description' => 'Step inside our clinic and take a look around at your own pace. Get to know our space before we meet in person.',
+    'tour_location' => 'In the heart of Fès',
+    'tour_note' => 'A warm, reassuring welcome',
+    'tour_link' => 'Get to know the clinic',
+    'tour_video_label' => 'Video tour of our clinic in Fès',
+    'tour_play' => 'Play the tour',
+    'tour_badge' => 'Inside the clinic',
+    'tour_caption' => 'A glimpse of your next visit.',
+    'tour_error' => 'The video cannot be played here.',
+    'tour_open' => 'Open the video',
     'hero_location' => 'Fès, Morocco · Modern dentistry',
     'hero_kicker' => 'A new generation of dental care',
     'hero_title' => 'Your smile deserves',

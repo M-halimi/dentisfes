@@ -80,6 +80,11 @@
                         <input id="profession" name="profession" value="{{ old('profession', $settings['profession']) }}" required>
                         @error('profession')<span class="admin-settings-error">{{ $message }}</span>@enderror
                     </div>
+                    <div class="admin-settings-field full">
+                        <label for="practitioner_name">{{ __('patients.practitioner_name') }}</label>
+                        <input id="practitioner_name" name="practitioner_name" maxlength="120" value="{{ old('practitioner_name', $settings['practitioner_name']) }}">
+                        @error('practitioner_name')<span class="admin-settings-error">{{ $message }}</span>@enderror
+                    </div>
                     <div class="admin-settings-field">
                         <label for="city">Ville</label>
                         <input id="city" name="city" value="{{ old('city', $settings['city']) }}" required>
